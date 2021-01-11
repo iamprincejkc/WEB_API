@@ -24,13 +24,13 @@ namespace WEB_API.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
-                HttpResponseMessage Res = await client.GetAsync("api/TestAPI");
+                HttpResponseMessage response = await client.GetAsync("api/TestAPI");
 
-                if (Res.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     //var TestResponse = Res.Content.ReadAsStringAsync().Result;
                     //TestInfo = JsonConvert.DeserializeObject<List<TestClass>>(TestResponse);
-                    TestInfo = await Res.Content.ReadAsAsync<List<TestClass>>();
+                    TestInfo = await response.Content.ReadAsAsync<List<TestClass>>();
 
                 }
                 return View(TestInfo);
@@ -51,12 +51,12 @@ namespace WEB_API.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
-                HttpResponseMessage result = await client.GetAsync("api/TestAPI/"+id);
+                HttpResponseMessage response = await client.GetAsync("api/TestAPI/" + id);
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
 
-                    test = await result.Content.ReadAsAsync<List<TestClass>>();
+                    test = await response.Content.ReadAsAsync<List<TestClass>>();
                 }
                 else
                 {
@@ -80,7 +80,7 @@ namespace WEB_API.Controllers
                 return HttpNotFound();
             }
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 return View(testclass);
             }
@@ -91,7 +91,6 @@ namespace WEB_API.Controllers
 
                 HttpResponseMessage response = new HttpResponseMessage();
                 response = await client.PostAsJsonAsync("api/TestAPI", testclass).ConfigureAwait(false);
-
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -118,15 +117,15 @@ namespace WEB_API.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
-                HttpResponseMessage result = await client.GetAsync("api/TestAPI/" + id);
+                HttpResponseMessage response = await client.GetAsync("api/TestAPI/" + id);
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
 
-                    test = await result.Content.ReadAsAsync<List<TestClass>>();
+                    test = await response.Content.ReadAsAsync<List<TestClass>>();
                 }
             }
-                return View(test);
+            return View(test);
         }
 
         [HttpPut]
@@ -137,19 +136,19 @@ namespace WEB_API.Controllers
             {
                 return RedirectToAction("Index", "Test");
             }
-            
+
 
             List<TestClass> test = new List<TestClass>();
 
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
-                HttpResponseMessage result = await client.PutAsJsonAsync("api/TestAPI/" , testclass);
+                HttpResponseMessage response = await client.PutAsJsonAsync("api/TestAPI/", testclass);
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
 
-                    test = await result.Content.ReadAsAsync<List<TestClass>>();
+                    test = await response.Content.ReadAsAsync<List<TestClass>>();
 
                     return RedirectToAction("Index", "Test");
                 }
@@ -173,9 +172,9 @@ namespace WEB_API.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
-                HttpResponseMessage result = await client.DeleteAsync("api/TestAPI/" + id);
+                HttpResponseMessage response = await client.DeleteAsync("api/TestAPI/" + id);
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
 
                     return RedirectToAction("Index");
@@ -190,12 +189,12 @@ namespace WEB_API.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
-                HttpResponseMessage result =client.GetAsync("api/TestAPI/" + id).Result;
+                HttpResponseMessage response = client.GetAsync("api/TestAPI/" + id).Result;
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
 
-                    test =result.Content.ReadAsAsync<List<TestClass>>().Result;
+                    test = response.Content.ReadAsAsync<List<TestClass>>().Result;
                 }
                 else
                 {

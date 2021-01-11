@@ -11,26 +11,45 @@ namespace WEB_API.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["email"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return RedirectToAction("Index", "Test");
+            if (Session["email"] != null)
+            {
+                return View();
+               
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            Session.Remove("email");
+            return RedirectToAction("Login");
         }
 
         public ActionResult Login()
         {
-            return View();
+            if (Session["email"] != null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -50,7 +69,7 @@ namespace WEB_API.Controllers
 
         public ActionResult UserDash()
         {
-            if (Session["Email"] != null)
+            if (Session["email"] != null)
             {
                 return View();
             }

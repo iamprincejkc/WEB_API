@@ -5,3 +5,7 @@
 <h3>@ViewBag.Message</h3>
 
 <p>Go To Test</p>
+@if (Session["email"] != null)
+{
+    <text> Welcome @Session["email"].ToString()  </text>
+}

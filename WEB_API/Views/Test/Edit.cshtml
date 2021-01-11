@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WEB_API.Models.TestClass>
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "Test", FormMethod.Post))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @foreach (var item in Model)
+    {
+
+        <div class="form-group">
+            <p for="fname" class="control-label col-md-2">Last name:</p>
+            <div class="col-md-10">
+                <input for="fname" name="fname" type="text" value="@item.fname" class="form-control" />
+                @Html.ValidationMessageFor(model => item.fname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p for="lname" class="control-label col-md-2">Last name:</p>
+            <div class="col-md-10">
+                <input for="lname" name="lname" type="text" value="@item.lname" class="form-control" />
+                @Html.ValidationMessageFor(model => item.lname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p for="email" class="control-label col-md-2">Email:</p>
+            <div class="col-md-10">
+                <input for="email" name="email" type="text" value="@item.email" class="form-control" />
+                @Html.ValidationMessageFor(model => item.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    }
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

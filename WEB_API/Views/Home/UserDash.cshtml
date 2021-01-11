@@ -1,0 +1,16 @@
+﻿@model WEB_API.Models.TestClass
+
+@{
+    ViewBag.Title = "UserDash";
+}
+
+<h2>User</h2>
+
+<fieldset>
+    <legend></legend>
+    @if (Session["email"] != null)
+    {
+        <text> Welcome @Session["email"].ToString()  </text>
+    }
+</fieldset>
+

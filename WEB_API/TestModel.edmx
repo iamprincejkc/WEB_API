@@ -18,7 +18,6 @@
           <Parameter Name="fname" Type="varchar" Mode="In" />
           <Parameter Name="lname" Type="varchar" Mode="In" />
           <Parameter Name="email" Type="varchar" Mode="In" />
-          <Parameter Name="result" Type="int" Mode="InOut" />
         </Function>
         <Function Name="sp_delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -58,10 +57,12 @@
             <Parameter Name="fname" Mode="In" Type="String" />
             <Parameter Name="lname" Mode="In" Type="String" />
             <Parameter Name="email" Mode="In" Type="String" />
-            <Parameter Name="result" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_delete">
           <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_search" ReturnType="Collection(TestModel.sp_search_Result)">
+          <Parameter Name="key" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_update">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -73,10 +74,13 @@
           <FunctionImport Name="sp_viewbyid" ReturnType="Collection(TestModel.sp_viewbyid_Result)">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_search" ReturnType="Collection(TestModel.sp_search_Result)">
-            <Parameter Name="key" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="sp_search_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="fname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="lname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+        </ComplexType>
         <ComplexType Name="sp_view_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="fname" Nullable="true" MaxLength="50" />
@@ -84,12 +88,6 @@
           <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="sp_viewbyid_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="fname" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="lname" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_search_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="fname" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="lname" Nullable="true" MaxLength="50" />
@@ -113,6 +111,16 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_add" FunctionName="TestModel.Store.sp_add" />
           <FunctionImportMapping FunctionImportName="sp_delete" FunctionName="TestModel.Store.sp_delete" />
+          <FunctionImportMapping FunctionImportName="sp_search" FunctionName="TestModel.Store.sp_search">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestModel.sp_search_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_update" FunctionName="TestModel.Store.sp_update" />
           <FunctionImportMapping FunctionImportName="sp_view" FunctionName="TestModel.Store.sp_view">
             <ResultMapping>
@@ -127,16 +135,6 @@
           <FunctionImportMapping FunctionImportName="sp_viewbyid" FunctionName="TestModel.Store.sp_viewbyid">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TestModel.sp_viewbyid_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="fname" ColumnName="fname" />
-                <ScalarProperty Name="lname" ColumnName="lname" />
-                <ScalarProperty Name="email" ColumnName="email" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_search" FunctionName="TestModel.Store.sp_search">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TestModel.sp_search_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="fname" ColumnName="fname" />
                 <ScalarProperty Name="lname" ColumnName="lname" />

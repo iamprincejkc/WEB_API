@@ -1,15 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 using WEB_API.Models;
 
 namespace WEB_API.Controllers
@@ -17,6 +11,9 @@ namespace WEB_API.Controllers
     public class TestController : Controller
     {
         string Baseurl = "https://localhost:44332/";
+
+        [HttpGet]
+        [Route("Test")]
         public async Task<ActionResult> Index()
         {
             List<TestClass> TestInfo = new List<TestClass>();
@@ -28,10 +25,13 @@ namespace WEB_API.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    //var TestResponse = Res.Content.ReadAsStringAsync().Result;
+                    //var TestResponse = response.Content.ReadAsStringAsync().Result;
                     //TestInfo = JsonConvert.DeserializeObject<List<TestClass>>(TestResponse);
                     TestInfo = await response.Content.ReadAsAsync<List<TestClass>>();
-
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Server error try after some time.");
                 }
                 return View(TestInfo);
             }
@@ -41,11 +41,6 @@ namespace WEB_API.Controllers
         [Route("Test/Details")]
         public async Task<ActionResult> Details(string id)
         {
-            if (id == null)
-            {
-                return RedirectToAction("Index", "Test");
-            }
-
             List<TestClass> test = new List<TestClass>();
 
             using (var client = new HttpClient())
@@ -55,8 +50,10 @@ namespace WEB_API.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-
-                    test = await response.Content.ReadAsAsync<List<TestClass>>();
+                    sp_viewbyid_Result tresp = await response.Content.ReadAsAsync<sp_viewbyid_Result>();
+                    TestClass testtemp = new TestClass()
+                    { id = tresp.id, fname = tresp.fname, lname = tresp.lname, email = tresp.email };
+                    test.Add(testtemp);
                 }
                 else
                 {
@@ -82,23 +79,26 @@ namespace WEB_API.Controllers
 
             if (ModelState.IsValid)
             {
-                return View(testclass);
-            }
 
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:44332/");
-
-                HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsJsonAsync("api/TestAPI", testclass).ConfigureAwait(false);
-
-                if (response.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    string result = response.Content.ReadAsStringAsync().Result;
+                    client.BaseAddress = new Uri("https://localhost:44332/");
 
-                    ViewBag.isSuccess = result;
+                    HttpResponseMessage response = new HttpResponseMessage();
+                    response = await client.PostAsJsonAsync("api/TestAPI", testclass).ConfigureAwait(false);
 
-                    return RedirectToAction("Index", "Test");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string result = response.Content.ReadAsStringAsync().Result;
+
+                        ViewBag.isSuccess = result;
+
+                        return RedirectToAction("Index", "Test");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Server error try after some time.");
+                    }
                 }
             }
             return View(testclass);
@@ -112,20 +112,32 @@ namespace WEB_API.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
-
-            List<TestClass> test = new List<TestClass>();
-            using (var client = new HttpClient())
+            try
             {
-                client.BaseAddress = new Uri(Baseurl);
-                HttpResponseMessage response = await client.GetAsync("api/TestAPI/" + id);
-
-                if (response.IsSuccessStatusCode)
+                List<TestClass> test = new List<TestClass>();
+                using (var client = new HttpClient())
                 {
+                    client.BaseAddress = new Uri(Baseurl);
+                    HttpResponseMessage response = await client.GetAsync("api/TestAPI/" + id);
 
-                    test = await response.Content.ReadAsAsync<List<TestClass>>();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        sp_viewbyid_Result tresp = await response.Content.ReadAsAsync<sp_viewbyid_Result>();
+                        TestClass testtemp = new TestClass()
+                        { id = tresp.id, fname = tresp.fname, lname = tresp.lname, email = tresp.email };
+                        test.Add(testtemp);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Server error try after some time.");
+                    }
                 }
+                return View(test);
             }
-            return View(test);
+            catch (Exception)
+            {
+                return RedirectToAction("Test", "Index");
+            }
         }
 
         [HttpPut]
@@ -137,7 +149,6 @@ namespace WEB_API.Controllers
                 return RedirectToAction("Index", "Test");
             }
 
-
             List<TestClass> test = new List<TestClass>();
 
             using (var client = new HttpClient())
@@ -147,9 +158,7 @@ namespace WEB_API.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-
                     test = await response.Content.ReadAsAsync<List<TestClass>>();
-
                     return RedirectToAction("Index", "Test");
                 }
                 else
@@ -162,9 +171,9 @@ namespace WEB_API.Controllers
             {
                 return HttpNotFound();
             }
+
             return View();
         }
-
 
         [HttpDelete]
         public async Task<ActionResult> Delete(int id)
@@ -179,9 +188,14 @@ namespace WEB_API.Controllers
 
                     return RedirectToAction("Index");
                 }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Server error try after some time.");
+                }
             }
             return RedirectToAction("Index");
         }
+
         public ActionResult Delete(int? id)
         {
             List<TestClass> test = new List<TestClass>();
@@ -201,7 +215,6 @@ namespace WEB_API.Controllers
                     ModelState.AddModelError(string.Empty, "Server error try after some time.");
                 }
             }
-
             if (test == null)
             {
                 return HttpNotFound();

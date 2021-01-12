@@ -29,7 +29,7 @@ namespace WEB_API
     
         public virtual DbSet<table1> table1 { get; set; }
     
-        public virtual int sp_add(string fname, string lname, string email, ObjectParameter result)
+        public virtual int sp_add(string fname, string lname, string email)
         {
             var fnameParameter = fname != null ?
                 new ObjectParameter("fname", fname) :
@@ -43,7 +43,7 @@ namespace WEB_API
                 new ObjectParameter("email", email) :
                 new ObjectParameter("email", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_add", fnameParameter, lnameParameter, emailParameter, result);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_add", fnameParameter, lnameParameter, emailParameter);
         }
     
         public virtual int sp_delete(Nullable<int> id)
@@ -53,6 +53,15 @@ namespace WEB_API
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_delete", idParameter);
+        }
+    
+        public virtual ObjectResult<sp_search_Result> sp_search(string key)
+        {
+            var keyParameter = key != null ?
+                new ObjectParameter("key", key) :
+                new ObjectParameter("key", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_search_Result>("sp_search", keyParameter);
         }
     
         public virtual int sp_update(Nullable<int> id, string fname, string lname, string email)
@@ -88,15 +97,6 @@ namespace WEB_API
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_viewbyid_Result>("sp_viewbyid", idParameter);
-        }
-    
-        public virtual ObjectResult<sp_search_Result> sp_search(string key)
-        {
-            var keyParameter = key != null ?
-                new ObjectParameter("key", key) :
-                new ObjectParameter("key", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_search_Result>("sp_search", keyParameter);
         }
     }
 }

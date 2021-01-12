@@ -28,9 +28,9 @@ namespace WindowsFormsApp1
             {
                 TestClass testlist = new TestClass()
                 {
-                    fname = txtfname.Text,
-                    lname = txtlname.Text,
-                    email = txtemail.Text
+                    fname = txtfname.Text.Trim(),
+                    lname = txtlname.Text.Trim(),
+                    email = txtemail.Text.Trim()
                 };
                 Insert(testlist);
                 MessageBox.Show("Inserted Successfully", "Success . . .", MessageBoxButtons.OK);
@@ -56,6 +56,10 @@ namespace WindowsFormsApp1
             MessageBox.Show("Your response data is: " + testJsonString);
 
 
+        }
+
+        private void FormAdd_Load(object sender, EventArgs e)
+        {
         }
     }
 }

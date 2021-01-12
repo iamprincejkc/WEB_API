@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Test_v2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_Product">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="storeid" Type="int" />
+          <Property Name="staffid" Type="int" />
+          <Property Name="productname" Type="varchar" MaxLength="50" />
+          <Property Name="productquantity" Type="int" />
+          <Property Name="productprice" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Tbl_Staff">
+          <Key>
+            <PropertyRef Name="staffid" />
+          </Key>
+          <Property Name="staffid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="storeid" Type="int" />
+          <Property Name="staffname" Type="varchar" MaxLength="50" />
+          <Property Name="staffaddress" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Store">
+          <Key>
+            <PropertyRef Name="storeid" />
+          </Key>
+          <Property Name="storeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="storename" Type="varchar" MaxLength="50" />
+          <Property Name="storelocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Tbl_Produ__staff__300424B4">
+          <End Role="Tbl_Staff" Type="Self.Tbl_Staff" Multiplicity="0..1" />
+          <End Role="Tbl_Product" Type="Self.Tbl_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Staff">
+              <PropertyRef Name="staffid" />
+            </Principal>
+            <Dependent Role="Tbl_Product">
+              <PropertyRef Name="staffid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Produ__store__2F10007B">
+          <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="0..1" />
+          <End Role="Tbl_Product" Type="Self.Tbl_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Store">
+              <PropertyRef Name="storeid" />
+            </Principal>
+            <Dependent Role="Tbl_Product">
+              <PropertyRef Name="storeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Staff__store__2C3393D0">
+          <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="0..1" />
+          <End Role="Tbl_Staff" Type="Self.Tbl_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Store">
+              <PropertyRef Name="storeid" />
+            </Principal>
+            <Dependent Role="Tbl_Staff">
+              <PropertyRef Name="storeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_GetProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetStaff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetStore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Test_v2ModelStoreContainer">
+          <EntitySet Name="Tbl_Product" EntityType="Self.Tbl_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Staff" EntityType="Self.Tbl_Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Store" EntityType="Self.Tbl_Store" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Tbl_Produ__staff__300424B4" Association="Self.FK__Tbl_Produ__staff__300424B4">
+            <End Role="Tbl_Staff" EntitySet="Tbl_Staff" />
+            <End Role="Tbl_Product" EntitySet="Tbl_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Produ__store__2F10007B" Association="Self.FK__Tbl_Produ__store__2F10007B">
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+            <End Role="Tbl_Product" EntitySet="Tbl_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Staff__store__2C3393D0" Association="Self.FK__Tbl_Staff__store__2C3393D0">
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+            <End Role="Tbl_Staff" EntitySet="Tbl_Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Test_v2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Product">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="storeid" Type="Int32" />
+          <Property Name="staffid" Type="Int32" />
+          <Property Name="productname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="productquantity" Type="Int32" />
+          <Property Name="productprice" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Tbl_Staff" Relationship="Self.FK__Tbl_Produ__staff__300424B4" FromRole="Tbl_Product" ToRole="Tbl_Staff" />
+          <NavigationProperty Name="Tbl_Store" Relationship="Self.FK__Tbl_Produ__store__2F10007B" FromRole="Tbl_Product" ToRole="Tbl_Store" />
+        </EntityType>
+        <EntityType Name="Tbl_Staff">
+          <Key>
+            <PropertyRef Name="staffid" />
+          </Key>
+          <Property Name="staffid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="storeid" Type="Int32" />
+          <Property Name="staffname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="staffaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Product" Relationship="Self.FK__Tbl_Produ__staff__300424B4" FromRole="Tbl_Staff" ToRole="Tbl_Product" />
+          <NavigationProperty Name="Tbl_Store" Relationship="Self.FK__Tbl_Staff__store__2C3393D0" FromRole="Tbl_Staff" ToRole="Tbl_Store" />
+        </EntityType>
+        <EntityType Name="Tbl_Store">
+          <Key>
+            <PropertyRef Name="storeid" />
+          </Key>
+          <Property Name="storeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="storename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="storelocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Product" Relationship="Self.FK__Tbl_Produ__store__2F10007B" FromRole="Tbl_Store" ToRole="Tbl_Product" />
+          <NavigationProperty Name="Tbl_Staff" Relationship="Self.FK__Tbl_Staff__store__2C3393D0" FromRole="Tbl_Store" ToRole="Tbl_Staff" />
+        </EntityType>
+        <Association Name="FK__Tbl_Produ__staff__300424B4">
+          <End Role="Tbl_Staff" Type="Self.Tbl_Staff" Multiplicity="0..1" />
+          <End Role="Tbl_Product" Type="Self.Tbl_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Staff">
+              <PropertyRef Name="staffid" />
+            </Principal>
+            <Dependent Role="Tbl_Product">
+              <PropertyRef Name="staffid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Produ__store__2F10007B">
+          <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="0..1" />
+          <End Role="Tbl_Product" Type="Self.Tbl_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Store">
+              <PropertyRef Name="storeid" />
+            </Principal>
+            <Dependent Role="Tbl_Product">
+              <PropertyRef Name="storeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Staff__store__2C3393D0">
+          <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="0..1" />
+          <End Role="Tbl_Staff" Type="Self.Tbl_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Store">
+              <PropertyRef Name="storeid" />
+            </Principal>
+            <Dependent Role="Tbl_Staff">
+              <PropertyRef Name="storeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Test_v2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Product" EntityType="Self.Tbl_Product" />
+          <EntitySet Name="Tbl_Staff" EntityType="Self.Tbl_Staff" />
+          <EntitySet Name="Tbl_Store" EntityType="Self.Tbl_Store" />
+          <AssociationSet Name="FK__Tbl_Produ__staff__300424B4" Association="Self.FK__Tbl_Produ__staff__300424B4">
+            <End Role="Tbl_Staff" EntitySet="Tbl_Staff" />
+            <End Role="Tbl_Product" EntitySet="Tbl_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Produ__store__2F10007B" Association="Self.FK__Tbl_Produ__store__2F10007B">
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+            <End Role="Tbl_Product" EntitySet="Tbl_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Staff__store__2C3393D0" Association="Self.FK__Tbl_Staff__store__2C3393D0">
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+            <End Role="Tbl_Staff" EntitySet="Tbl_Staff" />
+          </AssociationSet>
+          <FunctionImport Name="sp_GetProducts" ReturnType="Collection(Test_v2Model.sp_GetProducts_Result)" />
+          <FunctionImport Name="sp_GetStaff" ReturnType="Collection(Test_v2Model.sp_GetStaff_Result)" />
+          <FunctionImport Name="sp_GetStore" ReturnType="Collection(Test_v2Model.sp_GetStore_Result)" />
+        </EntityContainer>
+        <ComplexType Name="sp_GetProducts_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="Int32" Name="storeid" Nullable="true" />
+          <Property Type="Int32" Name="staffid" Nullable="true" />
+          <Property Type="String" Name="productname" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="productquantity" Nullable="true" />
+          <Property Type="Decimal" Name="productprice" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="sp_GetStaff_Result">
+          <Property Type="Int32" Name="staffid" Nullable="false" />
+          <Property Type="Int32" Name="storeid" Nullable="true" />
+          <Property Type="String" Name="staffname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="staffaddress" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_GetStore_Result">
+          <Property Type="Int32" Name="storeid" Nullable="false" />
+          <Property Type="String" Name="storename" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="storelocation" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Test_v2ModelStoreContainer" CdmEntityContainer="Test_v2Entities">
+          <EntitySetMapping Name="Tbl_Product">
+            <EntityTypeMapping TypeName="Test_v2Model.Tbl_Product">
+              <MappingFragment StoreEntitySet="Tbl_Product">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="storeid" ColumnName="storeid" />
+                <ScalarProperty Name="staffid" ColumnName="staffid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Staff">
+            <EntityTypeMapping TypeName="Test_v2Model.Tbl_Staff">
+              <MappingFragment StoreEntitySet="Tbl_Staff">
+                <ScalarProperty Name="staffid" ColumnName="staffid" />
+                <ScalarProperty Name="storeid" ColumnName="storeid" />
+                <ScalarProperty Name="staffname" ColumnName="staffname" />
+                <ScalarProperty Name="staffaddress" ColumnName="staffaddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Store">
+            <EntityTypeMapping TypeName="Test_v2Model.Tbl_Store">
+              <MappingFragment StoreEntitySet="Tbl_Store">
+                <ScalarProperty Name="storeid" ColumnName="storeid" />
+                <ScalarProperty Name="storename" ColumnName="storename" />
+                <ScalarProperty Name="storelocation" ColumnName="storelocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetProducts" FunctionName="Test_v2Model.Store.sp_GetProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Test_v2Model.sp_GetProducts_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="storeid" ColumnName="storeid" />
+                <ScalarProperty Name="staffid" ColumnName="staffid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="productquantity" ColumnName="productquantity" />
+                <ScalarProperty Name="productprice" ColumnName="productprice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetStaff" FunctionName="Test_v2Model.Store.sp_GetStaff">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Test_v2Model.sp_GetStaff_Result">
+                <ScalarProperty Name="staffid" ColumnName="staffid" />
+                <ScalarProperty Name="storeid" ColumnName="storeid" />
+                <ScalarProperty Name="staffname" ColumnName="staffname" />
+                <ScalarProperty Name="staffaddress" ColumnName="staffaddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetStore" FunctionName="Test_v2Model.Store.sp_GetStore">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Test_v2Model.sp_GetStore_Result">
+                <ScalarProperty Name="storeid" ColumnName="storeid" />
+                <ScalarProperty Name="storename" ColumnName="storename" />
+                <ScalarProperty Name="storelocation" ColumnName="storelocation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

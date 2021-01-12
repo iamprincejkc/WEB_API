@@ -24,7 +24,6 @@ namespace WindowsFormsApp1
 
         private void FormUpdate_Load(object sender, EventArgs e)
         {
-
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -34,10 +33,13 @@ namespace WindowsFormsApp1
                 TestClass testlist = new TestClass()
                 {
                     id =    Form1.id,
-                    fname = txtfname.Text,
-                    lname = txtlname.Text,
-                    email = txtemail.Text
+                    fname = txtfname.Text.Trim(),
+                    lname = txtlname.Text.Trim(),
+                    email = txtemail.Text.Trim()
                 };
+
+
+
                 Update(testlist);
                 MessageBox.Show("Inserted Successfully", "Success . . .",  MessageBoxButtons.OK);
                 this.Close();

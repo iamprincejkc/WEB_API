@@ -13,27 +13,22 @@
     {
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.fname)
+               Firstname:
             </dt>
-
             <dd>
-                <span for="fname">  @item.fname </span>
+                @Html.DisplayFor(model => item.fname)
             </dd>
-
             <dt>
-                @Html.DisplayNameFor(model => model.lname)
+               Lastname:
             </dt>
-
             <dd>
-                <span for="lname">  @item.lname </span>
+                @Html.DisplayFor(model => item.lname)
             </dd>
-
             <dt>
-                @Html.DisplayNameFor(model => model.email)
+                Email:
             </dt>
-
             <dd>
-                <span for="email">  @item.email </span>
+                @Html.DisplayFor(model => item.email)
             </dd>
 
         </dl>

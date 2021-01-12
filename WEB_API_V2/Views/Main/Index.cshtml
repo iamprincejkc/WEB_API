@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WEB_API_V2.Models.StoreModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.storeid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.storename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.storelocation)
+        </th>
+        <th></th>
+    </tr>
+    @Html.DropDownList("Staff", ViewBag.StaffList as SelectList, new { id = "ddlstaff", @class = "form-control" })
+    @Html.DropDownList("Product", ViewBag.ProductList as SelectList, new { id = "ddlproducts", @class = "form-control" })
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.storeid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.storename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.storelocation)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

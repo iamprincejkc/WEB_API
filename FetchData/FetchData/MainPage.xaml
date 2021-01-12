@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="FetchData.MainPage"
+             BackgroundColor="#faebeb"
+             >
+
+    <StackLayout>
+        <ListView x:Name="listtestview" ItemsSource="{Binding test}" HasUnevenRows="True" Footer="2021"   >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout  Orientation="Vertical"  HorizontalOptions="Fill" Spacing="10" Padding="10"  Grid.Row="1" Grid.Column="0">
+                                <Frame HasShadow="False" CornerRadius="30" BackgroundColor="#ffd1d1" WidthRequest="130" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
+                                    <Label Text="COVID PH CASES" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="40" TextColor="#cc3939" FontFamily=""></Label>
+                                </Frame>
+                                <StackLayout Orientation="Vertical"  HorizontalOptions="Fill" Spacing="10" Padding="10" Grid.Row="2" Grid.Column="0">
+                                    <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
+                                        <yummy:PancakeView BackgroundColor="#ffd1d1" CornerRadius="60,0,0,60" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HeightRequest="150">
+                                            <Label Text="{Binding infected, StringFormat='Infected = {0:N}'}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="25" TextColor="Black"></Label>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
+                                        <yummy:PancakeView BackgroundColor="#ffd1d1" CornerRadius="60,0,0,60" HorizontalOptions="FillAndExpand" HeightRequest="150">
+                                            <Label Text="{Binding tested, StringFormat='Tested = {0:N}'}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="25" TextColor="Black"></Label>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
+                                        <yummy:PancakeView BackgroundColor="#ffd1d1" CornerRadius="60,0,0,60" HorizontalOptions="FillAndExpand" HeightRequest="150">
+                                            <Label Text="{Binding recovered, StringFormat='Recovered = {0:N}'}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="25" TextColor="Black"></Label>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
+                                        <yummy:PancakeView BackgroundColor="#ffd1d1" CornerRadius="60,0,0,60" HorizontalOptions="FillAndExpand" HeightRequest="150">
+                                            <Label Text="{Binding deceased, StringFormat='Deceased = {0:N}'}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="25" TextColor="Black"></Label>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
+                                        <yummy:PancakeView BackgroundColor="#ffd1d1" CornerRadius="60,0,0,60" HorizontalOptions="FillAndExpand" HeightRequest="150">
+                                            <Label Text="{Binding activeCases, StringFormat='Active Cases = {0:N}'}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="25" TextColor="Black"></Label>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
+                                        <yummy:PancakeView BackgroundColor="#ffd1d1" CornerRadius="60,0,0,60" HorizontalOptions="FillAndExpand" HeightRequest="150">
+                                            <Label Text="{Binding unique, StringFormat='Unique = {0:N}'}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="25" TextColor="Black"></Label>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
+                                        <yummy:PancakeView BackgroundColor="#ffd1d1" CornerRadius="60,0,0,60" HorizontalOptions="FillAndExpand" HeightRequest="150">
+                                            <Label Text="{Binding country, StringFormat='Country = {0:N}'}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="25" TextColor="Black"></Label>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

@@ -192,6 +192,7 @@ namespace WindowsFormsApp1
             this.Name = "FormAdd";
             this.Style = MetroFramework.MetroColorStyle.Red;
             this.Text = "Add";
+            this.Load += new System.EventHandler(this.FormAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

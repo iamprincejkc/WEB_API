@@ -4,41 +4,28 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h3>Test</h3>
+<div class="form-horizontal" style="padding:30px;">
+    <h2>Details</h2>
     <hr />
     <dl class="dl-horizontal">
         @foreach (var m in Model)
         {
-            <dt>
-                @m.fname
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => m.fname)
-            </dd>
-
-            <dt>
-                @m.lname
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => m.lname)
-            </dd>
-
-            <dt>
-                @m.email
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => m.email)
-            </dd>
-
+            <div class="card text-center">
+                <div class="card-header">
+                    User
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@m.fname @m.lname</h5>
+                    <p class="card-text">@m.email</p>
+                    @Html.ActionLink("Back to List", "Index", new object { }, new { @class = "btn btn-primary" })
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
         }
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
 </p>

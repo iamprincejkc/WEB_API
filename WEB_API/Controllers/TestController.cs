@@ -17,6 +17,9 @@ namespace WEB_API.Controllers
     public class TestController : Controller
     {
         string Baseurl = "https://localhost:44332/";
+
+        [HttpGet]
+        [Route("Test")]
         public async Task<ActionResult> Index()
         {
             List<TestClass> TestInfo = new List<TestClass>();
@@ -147,9 +150,7 @@ namespace WEB_API.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-
                     test = await response.Content.ReadAsAsync<List<TestClass>>();
-
                     return RedirectToAction("Index", "Test");
                 }
                 else

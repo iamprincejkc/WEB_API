@@ -136,7 +136,7 @@ namespace WEB_API.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Test", "Index");
+                return RedirectToAction("Index", "Test");
             }
         }
 

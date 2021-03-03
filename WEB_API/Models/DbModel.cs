@@ -63,7 +63,6 @@ namespace WEB_API.Models
                     details.Add(obj);
                 }
 
-
                 return details;
             }
         }

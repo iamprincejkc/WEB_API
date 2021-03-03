@@ -10,7 +10,7 @@ namespace WEB_API.Controllers
     {
 
 
-        TestEntities db3= new TestEntities(); //ADO ENTITY MODEL
+        //TestEntities db3= new TestEntities(); //ADO ENTITY MODEL
         //DbModel db2 = new DbModel(); //SQL CONNECTION
         ITestDetails db = new TestDetails();
 

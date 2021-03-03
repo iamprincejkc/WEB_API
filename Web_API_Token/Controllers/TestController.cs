@@ -22,7 +22,6 @@ namespace Web_API_Token.Controllers
             var clientId = identity.Claims.FirstOrDefault(c => c.Type == "ClientId").Value;
             var clientName = identity.Claims.FirstOrDefault(c => c.Type == "ClientName").Value;
             var clientSecret = identity.Claims.FirstOrDefault(c => c.Type == "ClientSecret").Value;
-
             return Ok("Hello: " + UserName  + " Client Name: "+clientName);
         }
 
@@ -39,7 +38,6 @@ namespace Web_API_Token.Controllers
             var clientId = identity.Claims.FirstOrDefault(c => c.Type == "ClientID").Value;
             var clientName = identity.Claims.FirstOrDefault(c => c.Type == "ClientName").Value;
             var clientSecret = identity.Claims.FirstOrDefault(c => c.Type == "ClientSecret").Value;
-
             return Ok("Hello " + UserName + ", Your Email ID is : " + Email + " Client Name: " + clientName);
         }
 

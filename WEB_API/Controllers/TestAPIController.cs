@@ -18,6 +18,8 @@ namespace WEB_API.Controllers
         [HttpGet]
         public IHttpActionResult GetData()
         {
+
+
             //var result = db.sp_view().ToList();
             //var result = db2.GetData().ToList();
             var result = db.GetData();

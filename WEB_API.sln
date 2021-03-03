@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchData.Android", "FetchD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FetchData", "FetchData\FetchData\FetchData.csproj", "{F2696F33-DEEA-4B90-B5CA-A55569B05B1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB_API_V2", "WEB_API_V2\WEB_API_V2.csproj", "{A095AF7A-C826-4FEC-A9DE-FF062947E4C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB_API_V2", "WEB_API_V2\WEB_API_V2.csproj", "{57A27A0A-8283-41AD-95D2-4D5BA92C3F9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceServerForWebAapiV2", "..\..\source\repos\Web_API_TokenV_2\ResourceServerForWebAapiV2\ResourceServerForWebAapiV2.csproj", "{FF5175D4-4C7F-49BA-A6F8-134366C93BC0}"
 EndProject
@@ -28,7 +28,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web Service", "Web Service\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XF_Test.Android", "XF_Test\XF_Test.Android\XF_Test.Android.csproj", "{AE232BE0-DC90-4DAC-9B0B-1C536E1224E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XF_Test", "XF_Test\XF_Test\XF_Test.csproj", "{F2A8EBBC-5CFE-4630-BF1C-FDEE814A3BAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XF_Test", "XF_Test\XF_Test\XF_Test.csproj", "{F2A8EBBC-5CFE-4630-BF1C-FDEE814A3BAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi_Dap", "WebApi_Dap\WebApi_Dap.csproj", "{615CB6ED-B500-48D4-8FFE-F3F671FA257B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A", "C:\Users\RDPI-MIS\source\repos\A\A\A.csproj", "{CE19D966-381A-4804-B386-C37FBB2CE9FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,10 +66,10 @@ Global
 		{F2696F33-DEEA-4B90-B5CA-A55569B05B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2696F33-DEEA-4B90-B5CA-A55569B05B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2696F33-DEEA-4B90-B5CA-A55569B05B1C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A095AF7A-C826-4FEC-A9DE-FF062947E4C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A095AF7A-C826-4FEC-A9DE-FF062947E4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A095AF7A-C826-4FEC-A9DE-FF062947E4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A095AF7A-C826-4FEC-A9DE-FF062947E4C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57A27A0A-8283-41AD-95D2-4D5BA92C3F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57A27A0A-8283-41AD-95D2-4D5BA92C3F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57A27A0A-8283-41AD-95D2-4D5BA92C3F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57A27A0A-8283-41AD-95D2-4D5BA92C3F9C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF5175D4-4C7F-49BA-A6F8-134366C93BC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FF5175D4-4C7F-49BA-A6F8-134366C93BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF5175D4-4C7F-49BA-A6F8-134366C93BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -88,6 +92,14 @@ Global
 		{F2A8EBBC-5CFE-4630-BF1C-FDEE814A3BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2A8EBBC-5CFE-4630-BF1C-FDEE814A3BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2A8EBBC-5CFE-4630-BF1C-FDEE814A3BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{615CB6ED-B500-48D4-8FFE-F3F671FA257B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{615CB6ED-B500-48D4-8FFE-F3F671FA257B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{615CB6ED-B500-48D4-8FFE-F3F671FA257B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{615CB6ED-B500-48D4-8FFE-F3F671FA257B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE19D966-381A-4804-B386-C37FBB2CE9FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE19D966-381A-4804-B386-C37FBB2CE9FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE19D966-381A-4804-B386-C37FBB2CE9FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE19D966-381A-4804-B386-C37FBB2CE9FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

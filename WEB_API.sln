@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi_Dap", "WebApi_Dap\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A", "C:\Users\RDPI-MIS\source\repos\A\A\A.csproj", "{CE19D966-381A-4804-B386-C37FBB2CE9FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{74E8AACD-DC3A-4062-9A71-61066C2DA9C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +102,10 @@ Global
 		{CE19D966-381A-4804-B386-C37FBB2CE9FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE19D966-381A-4804-B386-C37FBB2CE9FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE19D966-381A-4804-B386-C37FBB2CE9FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74E8AACD-DC3A-4062-9A71-61066C2DA9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74E8AACD-DC3A-4062-9A71-61066C2DA9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74E8AACD-DC3A-4062-9A71-61066C2DA9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74E8AACD-DC3A-4062-9A71-61066C2DA9C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
